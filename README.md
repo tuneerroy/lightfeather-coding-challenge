@@ -6,7 +6,7 @@
 - (port: 8080)
 
 ## Instructions:
-### Start: (website available at [localhost:8080](http://localhost:3000))
+### Start: (website available at [localhost:3000](http://localhost:3000))
 ```bash
 docker-compose build
 docker-compose up
