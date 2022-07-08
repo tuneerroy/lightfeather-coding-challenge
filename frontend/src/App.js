@@ -7,14 +7,17 @@ import { Form, Button, Row, Col } from 'react-bootstrap'
 
 
 const App = () => {
+  const [loading, setLoading] = useState(true);
+
+  const [options, setOptions] = useState([]);
+  const [validated, setValidated] = useState(false);
+
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [supervisor, setSupervisor] = useState('');
   
-  const [loading, setLoading] = useState(true);
-  const [options, setOptions] = useState([]);
   useEffect(() => {
     axios.get('/api/supervisors')
     .then(res => {
@@ -28,6 +31,13 @@ const App = () => {
 
   const submitForm = (e) => {
     e.preventDefault();
+    if (!e.currentTarget.checkValidity()) {
+      console.log('invalid');
+      setValidated(true);
+      return;
+    }
+
+    setValidated(true);
 
     // create request package
     const data = {
@@ -53,7 +63,7 @@ const App = () => {
     loading ? <div>Loading...</div> :
     <div className="App">
       <h1>Notification Form</h1>
-      <Form onSubmit={submitForm}>
+      <Form onSubmit={submitForm} noValidate validated={validated}>
         <Row>
           <Col>
             <RequiredTextInput label='First Name' updateValue={setFirstName}/>

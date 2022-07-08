@@ -12,6 +12,7 @@ const DropDownMenu = ({ label, updateValue, options }) => {
                 <option value='' disabled hidden>Select...</option>
                 {options.map(option => <option key={option} value={option}>{option}</option>)}
             </Form.Select>
+            <div className='invalid-feedback'>Please select a value.</div>
         </Form.Group>
     )
 };

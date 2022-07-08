@@ -21,6 +21,10 @@
   color: rgb(87, 110, 115);
 }
 
+.App form div label {
+  font-weight: 500;
+}
+
 .App form .row {
   margin-bottom: 20px;
 }
