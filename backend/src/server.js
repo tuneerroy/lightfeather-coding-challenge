@@ -1,6 +1,5 @@
 import express from 'express';
 import axios from 'axios';
-import { rmSync } from 'fs';
 
 const PORT = 8080;
 const app = express();

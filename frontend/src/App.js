@@ -95,7 +95,7 @@ const App = () => {
         alert('Sorry, there was a server error. Please try again later.');
       }
       // unknown error 
-      else if (err.response.status != 400) {
+      else if (err.response.status !== 400) {
         console.log('Unknown error:', err);
         alert('Sorry, there seems to be a problem with the site. Please try again later.');
       }
