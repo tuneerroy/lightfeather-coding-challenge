@@ -16,21 +16,29 @@
   color: rgb(76, 96, 100);
 }
 
+.App form .row {
+  margin-bottom: 20px;
+}
+
 .App form span {
   margin: 10px 0px 10px 0px;
   color: rgb(87, 110, 115);
+}
+
+.App form .supervisor-container div {
+  margin: auto;
 }
 
 .App form div label {
   font-weight: 500;
 }
 
-.App form .row {
-  margin-bottom: 20px;
+.form-check-input[type="checkbox"] {
+  border: none;
 }
 
-.App form .supervisor-container div {
-  margin: auto;
+.was-validated .ignore-validate .form-check-input:valid~.form-check-label {
+  color: inherit;
 }
 
 .App form button {
@@ -38,31 +46,3 @@
   margin: auto;
   background-color: rgb(96, 119, 124);
 }
-/* .App Form input[type='checkbox'] {
-  display: inline-block;
-}
-
-.App Form input[type='checkbox'] > label {
-  display: flex;
-  flex-direction: row-reverse;
-} */
-
-/* .App form {
-  position: relative;
-  color: black;
-}
-
-.App form div {
-  padding: 10px;
-  display: block;
-  margin: auto;
-}
-
-.App form button {
-  display: block;
-  margin: auto;
-}
-
-.App form input {
-  display: inline-block;
-} */
