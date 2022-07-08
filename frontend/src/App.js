@@ -1,23 +1,83 @@
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios';
+import { RequiredTextInput, OptionalTextInput } from './components/TextInput';
+import DropDownMenu from './components/DropDownMenu';
+import { useState, useEffect } from 'react';
+import { Form, Button, Row, Col } from 'react-bootstrap'
 
-function App() {
+
+const App = () => {
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+  const [supervisor, setSupervisor] = useState('');
+  
+  const [loading, setLoading] = useState(true);
+  const [options, setOptions] = useState([]);
+  useEffect(() => {
+    axios.get('/api/supervisors')
+    .then(res => {
+      setOptions(res.data);
+    })
+    .catch(err => {
+      console.log(`Supervisors error: ${err}`);
+    })
+    .finally(() => setLoading(false));
+  }, [])
+
+  const submitForm = (e) => {
+    e.preventDefault();
+
+    // create request package
+    const data = {
+      firstName,
+      lastName,
+      ...email.length > 0 && {email},
+      ...phoneNumber.length > 0 && {phoneNumber},
+      supervisorValue: supervisor
+    };
+
+    // send request
+    axios.post('/api/submit', data)
+    .then(res => {
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(`Submit error: ${err}`);
+      console.log(`Error message: ${err.response.data}`);
+    });
+  }
+
   return (
+    loading ? <div>Loading...</div> :
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Notification Form</h1>
+      <Form onSubmit={submitForm}>
+        <Row>
+          <Col>
+            <RequiredTextInput label='First Name' updateValue={setFirstName}/>
+          </Col>
+          <Col>
+            <RequiredTextInput label='Last Name' updateValue={setLastName}/>
+          </Col>
+        </Row>
+        <Row>
+          <span>How would you prefer to be notified?</span>
+          <Col>
+            <OptionalTextInput label='Email' updateValue={setEmail}/>
+          </Col>
+          <Col>
+            <OptionalTextInput label='Phone Number' updateValue={setPhoneNumber}/>
+          </Col>
+        </Row>
+        <Row className='supervisor-container'>
+          <DropDownMenu label='Supervisor' updateValue={setSupervisor}  options={options}/>
+        </Row>
+        <Row> 
+          <Button type='submit'>Submit</Button>
+        </Row>
+      </Form>
     </div>
   );
 }
