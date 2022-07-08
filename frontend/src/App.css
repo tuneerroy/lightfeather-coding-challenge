@@ -1,0 +1,48 @@
+.App {
+  background-color: rgb(201, 210, 214);
+  margin: auto;
+  max-width: 800px;
+}
+
+.App h1 {
+  text-align: center;
+  padding: 10px;
+  color: black;
+  background-color: rgb(111, 127, 132);
+}
+
+.App form {
+  padding: 20px;
+  color: rgb(76, 96, 100);
+}
+
+.App form .row {
+  margin-bottom: 20px;
+}
+
+.App form span {
+  margin: 10px 0px 10px 0px;
+  color: rgb(87, 110, 115);
+}
+
+.App form .supervisor-container div {
+  margin: auto;
+}
+
+.App form div label {
+  font-weight: 500;
+}
+
+.form-check-input[type="checkbox"] {
+  border: none;
+}
+
+.was-validated .ignore-validate .form-check-input:valid~.form-check-label {
+  color: inherit;
+}
+
+.App form button {
+  width: 100px;
+  margin: auto;
+  background-color: rgb(96, 119, 124);
+}
